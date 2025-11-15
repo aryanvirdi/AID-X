@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AID-X: Connecting Hearts, Delivering Hope</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <iframe src="chatbot.html" 
+    style="position: fixed; bottom: 20px; right: 20px; width: 400px; height: 600px; border: none; z-index: 9999;">
+</iframe>
+<nav class="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="signin.php">Sign In</a></li>
+    <li><a href="singup.php">Sign Up</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="aidxForm.php">Aid Form</a></li>
+    <li><a href="map.html">Map</a></li>
+
+  </ul>
+</nav>
+
+    <!-- Configure Tailwind for the Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0F766E', // Teal-like color
+                        'secondary': '#14B8A6', // Lighter teal/cyan
+                        'accent': '#FDE047', // Yellow accent
+                        'background': '#050709'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1543269865-cbe426643c99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+         body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .navbar {
+    background-color: #0F766E; /* primary blue */
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li {
+    margin: 0 15px;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #ffdd57; /* theme accent */
+  }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin: 10px 0;
+    }
+  }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        /* Ensures full viewport coverage for the background */
+        .hero-background {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen bg-gray-50">
+
+    <!-- Hero Section Container (Full screen background and overlay) -->
+    <div class="hero-background bg-hero-pattern min-h-screen flex flex-col relative">
+
+        <!-- Dark Overlay for text contrast -->
+        <div class="absolute inset-0 bg-background opacity-80 backdrop-blur-sm"></div>
+
+        <!-- HEADER / NAVIGATION BAR -->
+        <header class="relative z-10 p-4 md:px-8 bg-black bg-opacity-30">
+            <nav class="flex justify-between items-center max-w-7xl mx-auto">
+                <!-- Logo/Title -->
+                <div class="text-3xl font-extrabold text-white tracking-wider flex items-center">
+                    <svg class="w-8 h-8 mr-2 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    AID-<span class="text-secondary">X</span>
+                </div>
+
+                <!-- Navigation Buttons (Sign In & Dashboard) -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="window.location.href='signin.php'" class="px-4 py-2 text-white font-medium bg-primary hover:bg-secondary rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                        Sign In
+                      
+                    </button>
+                    <button onclick="window.location.href='dashboard.html'"class="px-4 py-2 text-primary font-medium bg-white hover:bg-gray-100 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                        Dashboard
+
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="relative z-10 flex-grow flex items-center justify-center p-4">
+            <div class="text-center max-w-5xl w-full">
+                <!-- Headline -->
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                    Connecting <span class="text-secondary">Hearts</span>, Delivering <span class="text-accent">Hope</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-12">
+                    Join a supportive community to offer or receive aid where it's needed most.
+                </p>
+
+                <!-- Action Buttons Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mx-auto">
+
+                    <!-- Button 1: Get Help -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-primary/50 hover:border-secondary transition duration-500 cursor-pointer transform hover:scale-[1.03]">
+                        <svg class="w-12 h-12 mx-auto text-secondary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Get Help</h3>
+                        <p class="text-gray-300 mb-4">
+                            Find immediate assistance, resources, and support tailored to your needs.
+                        </p>
+                        <button class="w-full py-3 bg-secondary text-lg font-bold text-black rounded-xl hover:bg-primary hover:text-white transition duration-300 shadow-xl">
+                            Request Aid
+                        </button>
+                    </div>
+
+                    <!-- Button 2: Volunteer -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-primary/50 hover:border-secondary transition duration-500 cursor-pointer transform hover:scale-[1.03]">
+                        <svg class="w-12 h-12 mx-auto text-secondary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M10 16L9.8 8h4.4L14 16m-2 0h2m-4 0h4m-4 0c-.552 0-1-.448-1-1s.448-1 1-1h2c.552 0 1 .448 1 1s-.448 1-1 1h-2z"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Volunteer</h3>
+                        <p class="text-gray-300 mb-4">
+                            Offer your time, skills, or resources to support local and global initiatives.
+                        </p>
+                        <button class="w-full py-3 bg-secondary text-lg font-bold text-black rounded-xl hover:bg-primary hover:text-white transition duration-300 shadow-xl">
+                            Sign Up to Help
+                        </button>
+                    </div>
+
+                    <!-- Button 3: Donate -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-primary/50 hover:border-secondary transition duration-500 cursor-pointer transform hover:scale-[1.03]">
+                        <svg class="w-12 h-12 mx-auto text-secondary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 10v1m-1 8h2m-1-12c-2.485 0-4.5 2.015-4.5 4.5s2.015 4.5 4.5 4.5 4.5-2.015 4.5-4.5-2.015-4.5-4.5-4.5z"></path></svg>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Donate</h3>
+                        <p class="text-gray-300 mb-4">
+                            Provide financial support and directly contribute to aid projects in need.
+                        </p>
+                        <button class="w-full py-3 bg-secondary text-lg font-bold text-black rounded-xl hover:bg-primary hover:text-white transition duration-300 shadow-xl">
+                            Give Now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="relative z-10 p-4 bg-black bg-opacity-30">
+            <div class="max-w-7xl mx-auto text-center text-sm text-gray-400">
+                &copy; 2024 AID-X. Connecting Hearts, Delivering Hope.
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

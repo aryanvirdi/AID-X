@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AID-X Floating Chatbot</title>
+  <style>
+    /* Your existing styles here unchanged */
+    #chatbot-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 58px; height: 58px;
+      background: linear-gradient(135deg,   #0F766E  100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 32px rgba(80,120,240,0.28);
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 10001;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #chatbox-popup {
+      position: fixed;
+      bottom: 90px;
+      right: 32px;
+      width: 360px;
+      height: 520px;
+      background: #e7e8ea;
+      color: #eee;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(20,30,50,0.42);
+      display: none; flex-direction: column;
+      overflow: hidden;
+      z-index: 11000;
+    }
+    #chatbox-header {
+      background: linear-gradient(90deg, #0F766E 85%);
+      padding: 18px;
+      font-weight: 600; font-size: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      color: #f2f0f0; letter-spacing: 0.02em;
+    }
+    #chatbox-close {
+      cursor: pointer; font-size: 20px; color: #fff; opacity: 0.86;
+    }
+    #preset-questions {
+      padding: 12px 16px;
+      background: #f0f4ff;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      border-bottom: 1px solid #c3d1ff;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+    #preset-questions button {
+      background: #0F766E;
+      color: rgb(246, 239, 239);
+      border: none;
+      border-radius: 20px;
+      padding: 9px 18px;
+      cursor: pointer;
+      font-size: 14px;
+      min-width: 45%;
+      box-shadow: 0 3px 8px rgba(66, 99, 235, 0.3);
+      transition: background-color 0.3s ease;
+    }
+    #preset-questions button:hover {
+      background-color: #0F766E;
+      box-shadow: 0 5px 15px rgba(39, 69, 161, 0.5);
+    }
+    #chatbox-messages {
+      flex: 1; padding: 16px; overflow-y: auto;
+      background: #f4f4f6; font-size: 15px;
+      display: flex; flex-direction: column;
+      gap: 8px;
+    }
+    .message {
+      margin-bottom: 12px; padding: 8px 14px; border-radius: 20px; max-width: 84%;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    .message.user {
+      background:#0F766E;
+      color: #fff; align-self: flex-end; margin-left: auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .message.bot {
+      background: #2d2f38; color: #eaeaea; align-self: flex-start; margin-right: auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    #chatbox-input-area {
+      padding: 13px 16px; border-top: 1px solid #22242a; background:#0F766E;
+      display: flex; gap: 10px;
+    }
+    #chatbox-input {
+      flex: 1; padding: 11px 12px; border-radius: 20px; border: 1.5px solid #1a1a1c;
+      font-size: 15px; background: #e8e8ec; color: #49d0e2;
+    }
+    #chatbox-send-btn {
+      background: linear-gradient(135deg, hsl(240, 10%, 86%) 70% );
+      border: none; border-radius: 20px; padding: 10px 18px; color: #252526;
+      font-weight: bold; cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #chatbox-send-btn:hover {
+      background: #0F766E ;
+    }
+    /* Language selector style */
+    #languageSelect {
+      margin: 10px;
+      width: 100px;
+      padding: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Chat Button -->
+<div id="chatbot-float" title="Chat with AID-X 🌟">💬</div>
+
+<!-- Chatbox Popup -->
+<div id="chatbox-popup" aria-label="Chatbox">
+  <div id="chatbox-header">
+    <span>AID-X Chatbot</span>
+    <span id="chatbox-close">&times;</span>
+  </div>
+
+  <!-- Language Selection Dropdown -->
+  <select id="languageSelect">
+    <option value="en" selected>English</option>
+    <option value="hi">हिन्दी</option>
+  </select>
+
+  <!-- Preset questions buttons container -->
+  <div id="preset-questions"></div>
+
+  <!-- Messages -->
+  <div id="chatbox-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+  <!-- Input Area -->
+  <div id="chatbox-input-area">
+    <input id="chatbox-input" type="text" placeholder="Type your message…" aria-label="Message input" />
+    <button id="chatbox-send-btn">Send</button>
+  </div>
+</div>
+
+<script>
+  const chatFloatBtn = document.getElementById('chatbot-float');
+  const chatPopup = document.getElementById('chatbox-popup');
+  const chatCloseBtn = document.getElementById('chatbox-close');
+  const messagesDiv = document.getElementById('chatbox-messages');
+  const chatInput = document.getElementById('chatbox-input');
+  const sendBtn = document.getElementById('chatbox-send-btn');
+  const presetQuestionsDiv = document.getElementById('preset-questions');
+  const languageSelect = document.getElementById('languageSelect');
+
+  const presetQuestionsEn = [
+    'What is AID X?',
+    'Why was AID X made?',
+    'What are the goals of AID X?',
+    'What does AID X want to achieve?',
+    'Who can access AID X?',
+    'How does AID X work?',
+    'How to put requests on AID X?',
+    'How to login or sign up?',
+  ];
+  const presetQuestionsHi = [
+    'एड-एक्स क्या है?',
+    'एड-एक्स क्यों बनाया गया?',
+    'एड-एक्स के लक्ष्य क्या हैं?',
+    'एड-एक्स क्या हासिल करना चाहता है?',
+    'कौन एड-एक्स का उपयोग कर सकता है?',
+    'एड-एक्स कैसे काम करता है?',
+    'एड-एक्स पर अनुरोध कैसे भेजें?',
+    'लॉगिन या साइन अप कैसे करें?',
+  ];
+
+  function addMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender);
+    msgDiv.textContent = text;
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  function renderPresetQuestions() {
+    presetQuestionsDiv.innerHTML = '';
+    let questions = languageSelect.value === 'hi' ? presetQuestionsHi : presetQuestionsEn;
+    questions.forEach(question => {
+      const btn = document.createElement('button');
+      btn.textContent = question;
+      btn.addEventListener('click', () => sendMessageInternal(question));
+      presetQuestionsDiv.appendChild(btn);
+    });
+  }
+
+  async function sendMessageInternal(text) {
+    if (!text) return;
+    const language = languageSelect.value || 'en';
+
+    addMessage(text, 'user');
+    chatInput.value = '';
+    addMessage('...', 'bot');
+
+    try {
+      const response = await fetch('http://localhost:8000/chat', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ message: text, language: language }),
+      });
+      const data = await response.json();
+      const botMsg = messagesDiv.querySelector('.bot:last-child');
+      botMsg.textContent = data.reply;
+    } catch {
+      const botMsg = messagesDiv.querySelector('.bot:last-child');
+      botMsg.textContent = language === 'hi'
+        ? "[माफ़ करें, अभी मैं जवाब नहीं दे पा रहा हूँ।]"
+        : "Sorry, I am unable to respond now.";
+    }
+  }
+
+  sendBtn.addEventListener('click', () => sendMessageInternal(chatInput.value.trim()));
+
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessageInternal(chatInput.value.trim());
+  });
+
+  chatFloatBtn.addEventListener('click', () => {
+    chatPopup.style.display = chatPopup.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  chatCloseBtn.addEventListener('click', () => {
+    chatPopup.style.display = 'none';
+  });
+
+  languageSelect.addEventListener('change', () => {
+    renderPresetQuestions();
+  });
+
+  // Initialize preset questions on page load
+  renderPresetQuestions();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+/* styles.css for AID-X Homepage */
+
+/* Reset and basic styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Header and Navbar */
+header {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(10, 20, 40, 0.07);
+}
+.navbar {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+}
+.logo img {
+  height: 32px;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+.logo span {
+  font-weight: 700;
+  font-size: 1.08em;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+}
+nav ul li {
+  margin-right: 30px;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+nav ul a {
+  text-decoration: none;
+  color: #2D5BFF;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+nav ul a:hover {
+  color: #0e346a;
+}
+.cta-buttons .btn {
+  margin-left: 10px;
+}
+
+/* Buttons */
+.btn {
+  padding: 9px 22px;
+  border-radius: 21px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.02em;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-primary {
+  background: #2D5BFF;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #0e346a;
+}
+.btn-secondary {
+  background: #fff;
+  color: #2D5BFF;
+  border: 2px solid #2D5BFF;
+}
+.btn-secondary:hover {
+  background: #e7eefe;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(96deg, #ecf4ff 70%, #fbfdf0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0 55px;
+}
+.hero-content {
+  max-width: 530px;
+  margin-right: 48px;
+}
+.hero-content h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #2D5BFF;
+}
+.hero-content p {
+  font-size: 1.18em;
+  margin-bottom: 30px;
+  color: #222;
+}
+.hero-buttons .btn {
+  margin-right: 15px;
+}
+.hero-image img {
+  height: 255px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(13,44,158,0.13);
+}
+
+/* Section Headings */
+section h2 {
+  font-size: 2em;
+  color: #0e346a;
+  font-weight: 650;
+  margin-bottom: 15px;
+  text-align: center;
+}
+section p {
+  text-align: center;
+  margin-bottom: 27px;
+  color: #444;
+}
+
+/* How Works Section */
+.works {
+  background: #fff;
+  padding: 38px 0 32px;
+}
+.works-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 22px;
+}
+.works-cards .card {
+  background: #e7eefe;
+  padding: 38px 32px;
+  border-radius: 16px;
+  max-width: 260px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(10,20,40,0.06);
+}
+.works-cards .icon img {
+  width: 38px;
+  margin-bottom: 12px;
+}
+.works-cards h3 {
+  color: #2D5BFF;
+  font-size: 1.2em;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.works-cards p {
+  color: #2a3452;
+  font-size: 1.07em;
+}
+
+/* Benefits Section */
+.benefits {
+  padding: 46px 0 40px;
+  background: #f9fafc;
+}
+.benefit-cards {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  margin-top: 26px;
+}
+.benefit-cards .card {
+  background: #fff;
+  padding: 31px 27px;
+  border-radius: 13px;
+  min-width: 210px;
+  box-shadow: 0 2px 11px rgba(43,88,214,0.05);
+  text-align: center;
+}
+.benefit-cards .image img {
+  width: 58px;
+  margin-bottom: 15px;
+}
+.benefit-cards h4 {
+  color: #478AF5;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+.benefit-cards p {
+  color: #232938;
+  font-size: 1.07em;
+}
+
+/* Testimonials */
+.community {
+  padding: 46px 0 40px;
+  background: #fff;
+}
+.testimonials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 22px;
+}
+.testimonial-card {
+  background: #ecf4ff;
+  border-radius: 10px;
+  padding: 24px 21px;
+  min-width: 210px;
+  box-shadow: 0 2px 10px rgba(43,88,214,0.04);
+  text-align: left;
+  position: relative;
+}
+.user-tag {
+  display: inline-block;
+  background: #2D5BFF;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.89em;
+  margin-bottom: 10px;
+}
+.testimonial-card h5 {
+  color: #378AFE;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 1em;
+}
+.testimonial-card p {
+  color: #1e223a;
+  font-size: 1.02em;
+}
+
+/* CTA Section */
+.cta {
+  padding: 48px 0 32px;
+  background: #f9fafc;
+  text-align: center;
+}
+.cta h2 {
+  font-size: 2.1em;
+  color: #1440cc;
+  margin-bottom: 15px;
+}
+.cta p {
+  color: #282f40;
+  font-size: 1.16em;
+  margin-bottom: 19px;
+}
+
+/* Footer */
+footer {
+  background: #e7eefe;
+  padding: 19px 0 7px;
+  font-size: 1em;
+  color: #222;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 12px;
+}
+.footer-links a {
+  color: #2D5BFF;
+  text-decoration: none;
+  margin: 0 8px;
+  font-weight: 500;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 980px;
+  margin: auto;
+  padding-top: 6px;
+  font-size: 0.92em;
+}
+.footer-social a img {
+  width: 23px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Responsive Layout */
+@media (max-width: 900px) {
+  .navbar,
+  .works-cards,
+  .benefit-cards,
+  .testimonials,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .hero {
+    flex-direction: column;
+    padding: 35px 0 25px;
+  }
+  .hero-content {
+    margin-right: 0;
+    margin-bottom: 19px;
+    text-align: center;
+  }
+  .hero-image img {
+    height: 180px;
+  }
+  .works-cards .card,
+  .benefit-cards .card,
+  .testimonial-card {
+    max-width: 100%;
+    min-width: 180px;
+    margin-bottom: 16px;
+  }
+}
+
+/* Utility */
+.text-center {
+  text-align: center;
+}
+.margin-top-sm {
+  margin-top: 11px;
+}
